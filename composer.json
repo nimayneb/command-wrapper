@@ -1,0 +1,33 @@
+{
+  "name": "nimayneb/command-wrapper",
+
+  "description": "Framework to build a command wrapper with local process and ssh2 support",
+
+  "keywords": "",
+
+  "version": "1.0.0",
+
+  "minimum-stability": "stable",
+
+  "license": "BSD-3-Clause",
+
+  "authors": [
+    {
+      "name": "Jan Runte",
+      "email": "github-1601@nimayneb.de",
+      "role": "Developer"
+    }
+  ],
+
+  "require": {
+    "php": ">5.5.0",
+    "symfony/process": "^3.1.5",
+    "phpseclib/phpseclib": "^2.0.4"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "JBR\\CommandWrapper\\": "Classes/"
+    }
+  }
+}
