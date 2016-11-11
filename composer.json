@@ -3,9 +3,9 @@
 
   "description": "Framework to build a command wrapper with local process and ssh2 support",
 
-  "keywords": "",
+  "keywords": ["command", "wrapper", "process", "sftp", "ssh", "terminal"],
 
-  "version": "1.0.0",
+  "version": "1.0.1",
 
   "minimum-stability": "stable",
 
