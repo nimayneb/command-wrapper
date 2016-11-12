@@ -1,5 +1,6 @@
 <?php namespace JBR\CommandWrapper;
 
+use Closure;
 use JBR\CommandWrapper\Client\Credentials;
 use JBR\CommandWrapper\Client\Handler\SecureShellHandler;
 use JBR\CommandWrapper\Client\Input\ArgumentValue;
@@ -103,27 +104,27 @@ class SecureShellCommander extends Commander implements SecureShellHandler
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setInitializeSecureShellHandler(callable $handler)
+    public function setInitializeSecureShellHandler(Closure $handler)
     {
         $this->client->setInitializeSecureShellHandler($handler);
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setSecureShellOutputHandler(callable $handler)
+    public function setSecureShellOutputHandler(Closure $handler)
     {
         $this->client->setSecureShellOutputHandler($handler);
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getInitializeSecureShellHandler()
     {
@@ -131,7 +132,7 @@ class SecureShellCommander extends Commander implements SecureShellHandler
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getSecureShellOutputHandler()
     {

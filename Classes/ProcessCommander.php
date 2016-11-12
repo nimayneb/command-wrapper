@@ -1,5 +1,6 @@
 <?php namespace JBR\CommandWrapper;
 
+use Closure;
 use JBR\CommandWrapper\Client\Handler\ProcessHandler;
 use JBR\CommandWrapper\Client\ProcessClient;
 use JBR\CommandWrapper\System\BinaryFile;
@@ -61,27 +62,27 @@ class ProcessCommander extends Commander implements ProcessHandler
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setInitializeProcessHandler(callable $handler)
+    public function setInitializeProcessHandler(Closure $handler)
     {
         $this->client->setInitializeProcessHandler($handler);
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setProcessOutputHandler(callable $handler)
+    public function setProcessOutputHandler(Closure $handler)
     {
         $this->client->setProcessOutputHandler($handler);
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getInitializeProcessHandler()
     {
@@ -89,7 +90,7 @@ class ProcessCommander extends Commander implements ProcessHandler
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getProcessOutputHandler()
     {

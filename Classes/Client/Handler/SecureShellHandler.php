@@ -9,25 +9,27 @@
 namespace JBR\CommandWrapper\Client\Handler;
 
 
+use Closure;
+
 interface SecureShellHandler
 {
     /**
-     * @param callable $handler
+     * @param Closure $handler
      */
-    public function setInitializeSecureShellHandler(callable $handler);
+    public function setInitializeSecureShellHandler(Closure $handler);
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      */
-    public function setSecureShellOutputHandler(callable $handler);
+    public function setSecureShellOutputHandler(Closure $handler);
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getInitializeSecureShellHandler();
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getSecureShellOutputHandler();
 }

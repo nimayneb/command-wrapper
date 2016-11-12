@@ -9,25 +9,27 @@
 namespace JBR\CommandWrapper\Client\Handler;
 
 
+use Closure;
+
 interface ProcessHandler
 {
     /**
-     * @param callable $handler
+     * @param Closure $handler
      */
-    public function setInitializeProcessHandler(callable $handler);
+    public function setInitializeProcessHandler(Closure $handler);
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      */
-    public function setProcessOutputHandler(callable $handler);
+    public function setProcessOutputHandler(Closure $handler);
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getInitializeProcessHandler();
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getProcessOutputHandler();
 }

@@ -1,5 +1,6 @@
 <?php namespace JBR\CommandWrapper\Client;
 
+use Closure;
 use Exception;
 use JBR\CommandWrapper\Client\Handler\ProcessHandler;
 use JBR\CommandWrapper\Client\Output\Result;
@@ -13,21 +14,21 @@ use Symfony\Component\Process\Process;
 class ProcessClient extends LocalClient implements ProcessHandler
 {
     /**
-     * @var callable
+     * @var Closure
      */
     protected $initializeProcessHandler;
 
     /**
-     * @var callable
+     * @var Closure
      */
     protected $processOutputHandler;
 
     /**
      * @param BinaryFile $binary
-     * @param callable $initializeProcessHandler
-     * @param callable $processOutputHandler
+     * @param Closure $initializeProcessHandler
+     * @param Closure $processOutputHandler
      */
-    public function __construct(BinaryFile $binary, callable $initializeProcessHandler = null, callable $processOutputHandler = null)
+    public function __construct(BinaryFile $binary, Closure $initializeProcessHandler = null, Closure $processOutputHandler = null)
     {
         parent::__construct($binary);
 
@@ -44,7 +45,7 @@ class ProcessClient extends LocalClient implements ProcessHandler
     protected function prepareProcess(array $arguments, Directory $workingDirectory = null) {
         $process = new Process($this->buildCommand($arguments), $workingDirectory ? $workingDirectory->getPath() : null);
 
-        if (true === is_callable($this->initializeProcessHandler)) {
+        if (true === $this->initializeProcessHandler instanceof Closure) {
             /*
              * function (Process $process) {
              *     $process->setTimeout(3600);
@@ -76,27 +77,27 @@ class ProcessClient extends LocalClient implements ProcessHandler
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setInitializeProcessHandler(callable $handler)
+    public function setInitializeProcessHandler(Closure $handler)
     {
         $this->initializeProcessHandler = $handler;
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setProcessOutputHandler(callable $handler)
+    public function setProcessOutputHandler(Closure $handler)
     {
         $this->processOutputHandler = $handler;
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getInitializeProcessHandler()
     {
@@ -104,7 +105,7 @@ class ProcessClient extends LocalClient implements ProcessHandler
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getProcessOutputHandler()
     {

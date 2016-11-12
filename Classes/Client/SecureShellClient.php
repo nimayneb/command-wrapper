@@ -1,5 +1,6 @@
 <?php namespace JBR\CommandWrapper\Client;
 
+use Closure;
 use JBR\CommandWrapper\Client\Handler\SecureShellHandler;
 use JBR\CommandWrapper\Client\Output\Result;
 use JBR\CommandWrapper\System\Directory;
@@ -17,12 +18,12 @@ class SecureShellClient extends RemoteClient implements SecureShellHandler
     protected $client;
 
     /**
-     * @var callable
+     * @var Closure
      */
     protected $secureShellOutputHandler;
 
     /**
-     * @var callable
+     * @var Closure
      */
     protected $initializeSecureShellHandler;
 
@@ -44,7 +45,7 @@ class SecureShellClient extends RemoteClient implements SecureShellHandler
     {
         $this->client = new SSH2($credentials->getHost(), $credentials->getPort());
 
-        if (true === is_callable($this->initializeSecureShellHandler)) {
+        if (true === $this->initializeSecureShellHandler instanceof Closure) {
             /*
              * function (SSH2 $shell) {
              *     $shell->setTimeout(3600);
@@ -85,7 +86,7 @@ class SecureShellClient extends RemoteClient implements SecureShellHandler
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getSecureShellOutputHandler()
     {
@@ -93,17 +94,17 @@ class SecureShellClient extends RemoteClient implements SecureShellHandler
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setSecureShellOutputHandler(callable $handler)
+    public function setSecureShellOutputHandler(Closure $handler)
     {
         $this->secureShellOutputHandler = $handler;
     }
 
     /**
-     * @return callable
+     * @return Closure
      */
     public function getInitializeSecureShellHandler()
     {
@@ -111,11 +112,11 @@ class SecureShellClient extends RemoteClient implements SecureShellHandler
     }
 
     /**
-     * @param callable $handler
+     * @param Closure $handler
      *
      * @return void
      */
-    public function setInitializeSecureShellHandler(callable $handler)
+    public function setInitializeSecureShellHandler(Closure $handler)
     {
         $this->initializeSecureShellHandler = $handler;
     }

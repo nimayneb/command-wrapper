@@ -5,7 +5,7 @@
 
   "keywords": ["command", "wrapper", "process", "sftp", "ssh", "terminal"],
 
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "minimum-stability": "stable",
 
